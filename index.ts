@@ -32,6 +32,7 @@ function loadData(doc: XMLDocument, element: JQuery) {
   characterElement.append(toProficienciesBlock(character));
   characterElement.append(toTraitsBlock(character));
   characterElement.append(toFeaturesBlock(character));
+  characterElement.append(toFeatsBlock(character));
   characterElement.append(toWeaponsBlock(character));
   characterElement.append(toSpellsAndPowersBlock(character));
 
@@ -215,8 +216,43 @@ function toFeaturesBlock(character: JQuery<HTMLElement>): JQuery {
   return $('<p>').append('Features:').append(list);
 }
 
+function toFeatsBlock(character: JQuery<HTMLElement>): JQuery {
+  let list = $('<ul>');
+  character.find('featlist').children().each((i, e) => {
+    let t = $(e);
+    list.append($('<li>')
+      .append(valueSpan(t, 'name', null, {
+        content: t.find('text').html()
+      }))
+    );
+  });
+  return $('<p>').append('Feats:').append(list);
+}
+
 function toWeaponsBlock(character: JQuery<HTMLElement>): JQuery {
   let list = $('<ul>');
+  character.find('weaponlist').children().each((i, e) => {
+    let t = $(e);
+    let wpnDesc = `
+- Weapon properties only, actual attack needs to add character bonuses --
+<p class="statblock">Attack: ${t.find('attackbonus').text()}<br/>
+Damage</p><ul>`
+    t.find('damagelist').children().each((i, el) => {
+      let dam = $(el);
+      wpnDesc += `<li class="statblock">${dam.find('type').text()} ${dam.find('dice').text()}+${dam.find('stat').text()}+${dam.find('bonus').text()}</li>`
+    });
+    wpnDesc += `</ul>
+<p class="statblock">
+Properties: ${t.find('properties').text()}<br/>
+Proficient: <input type="checkbox" ${t.find('prof').text() == '1' ? 'checked' : ''} disabled /></p>
+    `
+
+    list.append($('<li>')
+      .append(valueSpan(t, 'name', null, {
+        content: wpnDesc
+      }))
+    );
+  });
   return $('<p>').append('Weapons:').append(list);
 }
 
