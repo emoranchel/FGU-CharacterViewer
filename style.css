@@ -1,0 +1,39 @@
+body,
+html {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12pt;
+}
+
+.statblock {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.ui-dialog-content {
+  font-size: 10pt;
+}
+
+.ui-tooltip-content {
+  font-size: 10pt;
+}
+
+.ui-tooltip {
+  max-width: 800px;
+  width: 800px;
+}
+
+table {
+  border: 1px solid black;
+  padding: 0;
+  margin: 0;
+}
+
+td {
+  border: 1px solid gray;
+  padding: 0;
+  margin: 0;
+}
+
+tr {
+  padding: 0;
+  margin: 0;
+}
