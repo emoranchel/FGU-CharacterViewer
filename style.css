@@ -8,6 +8,11 @@ html {
   font-family: 'Courier New', Courier, monospace;
 }
 
+.chardetails {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 10pt;
+}
+
 .ui-dialog-content {
   font-size: 10pt;
 }

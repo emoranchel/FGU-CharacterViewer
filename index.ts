@@ -35,6 +35,7 @@ function loadData(doc: XMLDocument, element: JQuery) {
   characterElement.append(toFeatsBlock(character));
   characterElement.append(toWeaponsBlock(character));
   characterElement.append(toSpellsAndPowersBlock(character));
+  characterElement.append(toDetailsBlock(character));
 
   element.append(characterElement);
 }
@@ -330,6 +331,38 @@ function toSpellsAndPowersBlock(character: JQuery<HTMLElement>): JQuery {
   return $('<p>').append('Spells and powers:').append(list);
 }
 
+function toDetailsBlock(character: JQuery<HTMLElement>): JQuery {
+  return $('<p>Description:')
+    .append($('<div class="charDetails">')
+      .append('<b>Gender</b>: ')
+      .append(character.find('gender').text())
+      .append('<br/><b>Age</b>: ')
+      .append(character.find('age').text())
+      .append('<br/><b>Height</b>: ')
+      .append(character.find('height').text())
+      .append('<br/><b>Weight</b>: ')
+      .append(character.find('weight').text())
+      .append('<br/><b>Size</b>: ')
+      .append(character.find('size').text())
+      .append('<br/><b>Alignment</b>: ')
+      .append(character.find('alignment').text())
+      .append('<br/><b>Deity</b>: ')
+      .append(character.find('deity').text())
+      .append('<br/><b>Personality traits</b>: ')
+      .append(character.find('personalitytraits').text())
+      .append('<br/><b>Ideals</b>: ')
+      .append(character.find('ideals').text())
+      .append('<br/><b>Bonds</b>: ')
+      .append(character.find('bonds').text())
+      .append('<br/><b>Flaws</b>: ')
+      .append(character.find('flaws').text())
+      .append('<br/><b>Appearance</b>: ')
+      .append(character.find('appearance').text())
+      .append('<br/><b>Notes</b>: ')
+      .append(character.find('notes').text())
+    );
+
+}
 
 function valueSpan(node: JQuery<HTMLElement>, path: string, title?: string, tooltipOpts?: JQueryUI.TooltipOptions): JQuery {
   let valueText = node.find(path).text();
