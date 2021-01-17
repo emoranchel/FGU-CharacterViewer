@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Since this uses typescript ignore javascript:
+*.js
